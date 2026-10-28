@@ -30,3 +30,60 @@ body {
   margin: 0 auto;
   padding: 0 var(--space);
 }
+
+/* header */
+.side-header {
+    background-color: var(--color-primary);
+    color:#ffffff;
+    padding: var(--space) 0;
+    margin-bottom:calc(var(--space) * 1.5);
+}
+
+.site-title {
+    font-size: 1.4rem;
+}
+
+main {
+    padding-top: calc(var(--space) * 1.5);
+    padding-bottom: calc(var(--space) * 2);
+}
+
+/* Summary Cards */
+.summary {
+    display: grid;
+    gap: var(--space);
+    margin-bottom: calc(var(--space) * 1.5);
+}
+
+.card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left-width: 5px;
+    border-radius: var(--radius);
+    padding: var(--space);
+}
+
+.card-label {
+    font-size: 0.85rem;
+    font-weight:600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.card-value {
+    font-size: 1.75rem;
+    font-weight:700;
+}
+
+.card-income {
+    border-left-color: var(--color-income);
+}
+
+.card-expense {
+    border-left-color: var(--color-expense);
+}   
+
+.card-balance {
+    border-left-color: var(--color-primary);
+}
