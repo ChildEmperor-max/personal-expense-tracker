@@ -87,3 +87,64 @@ main {
 .card-balance {
     border-left-color: var(--color-primary);
 }
+
+/* Panels */
+.panel {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space);
+    margin-bottom: calc(var(--space) * 1.5);
+}
+
+.panel h2 {
+    font-size: 1.15rem;
+    margin-bottom: var(--space);
+}
+
+/* Form */
+.form-group {
+    margin-bottom: var(--space);
+}
+
+.label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--color-text);
+    background-color:#ffffff;
+    border: 1px solid var(--clor-border);
+    border-radius: var(--radius);
+}
+
+input:focus, 
+select:focus,
+button:focus-visible {
+    outline: 2px solid var (--color-primary);
+    outline-offset: 1px;
+}
+
+.error-message {
+    color: var(--color-expense);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    min-height: 1.2rem;
+}
+
+.input-invalid {
+    border-color: var(--color-expense);
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
