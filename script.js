@@ -55,3 +55,14 @@ function validateForm() {
 
     return descriptionMessage === "" && amountMessage === "" && dateMessage === "";
 }
+
+ function createTransaction() {
+    return {
+        id: Date.now(),
+        description: descriptionInput.value.trim(),
+        amount: Number(amountInput.value),
+        type: typeInput.value,
+        category: CatergoryInput.value,
+        date: dateInput.value 
+    };
+ }
