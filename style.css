@@ -32,7 +32,7 @@ body {
 }
 
 /* header */
-.side-header {
+.site-header {
     background-color: var(--color-primary);
     color:#ffffff;
     padding: var(--space) 0;
