@@ -99,7 +99,8 @@ function renderTransactions() {
 }
 
 function resetForm() {
-    dateInput.value = new Date().toISOString().split('T')[0];
+    form.reset();
+    setDefaultDate();
 }
 
 function handleFormSubmit(event) {
