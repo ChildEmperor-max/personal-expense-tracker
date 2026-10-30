@@ -111,7 +111,6 @@ function setDefaultDate() {
 function handleFormSubmit(event) {
     event.preventDefault();
 
-    const isValid = validateForm();
     if (!validateForm()) {
         return;
     }
