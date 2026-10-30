@@ -37,6 +37,7 @@ function validateDate(date) {
     if (date === "") {
         return "Please choose a date.";
     }
+    return "";
 }
 
 function showError(errorElement, inputElement, message) {
@@ -110,6 +111,7 @@ function setDefaultDate() {
 function handleFormSubmit(event) {
     event.preventDefault();
 
+    const isValid = validateForm();
     if (!validateForm()) {
         return;
     }
