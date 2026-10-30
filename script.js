@@ -56,7 +56,7 @@ function validateForm() {
     return descriptionMessage === "" && amountMessage === "" && dateMessage === "";
 }
 
- function createTransaction() {
+function createTransaction() {
     return {
         id: Date.now(),
         description: descriptionInput.value.trim(),
@@ -65,4 +65,35 @@ function validateForm() {
         category: CatergoryInput.value,
         date: dateInput.value 
     };
- }
+}
+
+function formatAmount(amount) {
+    return amount.toFixed(2);
+}
+
+function createTransactionRow(transaction) {
+    const row = document.createElement('tr');
+
+    const sign = transaction.type === 'income' ? '+' : '-';
+    const amountClass =
+    transaction.type === 'income' ? 'amount-income' : 'amount-expense';
+
+    row.innerHTML = `
+        <td>${transaction.description}</td>
+        <td>${transaction.category}</td>
+        <td>${transaction.date}</td>
+        <td>${transaction.type}</td>
+        <td class="${amountClass}">${sign}${formatAmount(transaction.amount)}</td>
+    `;
+    return row;
+}
+
+function renderTransactions() {
+    transactionList.innerHTML = "";
+
+    transactions.forEach(function (transaction) {
+        transactionList.appendChild(createTransactionRow(transaction));
+    });
+
+    emptyMessage.hidden = transactions.length > 0;
+}
