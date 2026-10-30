@@ -112,6 +112,10 @@ function createTransactionRow(transaction) {
         <td>${transaction.date}</td>
         <td>${transaction.type}</td>
         <td class="${amountClass}">${sign}${formatAmount(transaction.amount)}</td>
+        <td>
+            <button type="button" class="btn-secondary" data-action="edit" data-id="${transaction.id}">Edit</button>
+            <button type="button" class="btn-danger" data-action="delete" data-id="${transaction.id}">delete</button>
+        </td>
     `;
     return row;
 }
