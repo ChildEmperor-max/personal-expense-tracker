@@ -95,7 +95,7 @@ function createTransaction() {
 }
 
 function formatAmount(amount) {
-    return amount.toFixed(2);
+    return amount.toLocaleString('en-US', { style: 'currency', currency: 'PHP' });
 }
 
 function createTransactionRow(transaction) {
