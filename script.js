@@ -1,5 +1,9 @@
 let transactions = [];
 
+const totalIncomeElement = document.getElementById('total-income');
+const totalExpenseElement = document.getElementById('total-expenses');
+const balanceElement = document.getElementById('balance');
+
 const form = document.getElementById('transaction-form');
 const descriptionInput = document.getElementById('description');
 const amountInput = document.getElementById('amount');
@@ -13,6 +17,28 @@ const dateError = document.getElementById('date-error');
 
 const transactionList = document.getElementById('transaction-list');
 const emptyMessage = document.getElementById('empty-message');
+
+function calculateTotal(type) {
+    return transactions
+        .filter(function (transaction) {
+            return transaction.type === type;
+        })
+        .reduce (function (sum, transaction) {
+            return sum + transaction.amount;
+        }, 0);
+}
+
+function renderSummary() {
+    console.log("Rendering summary, transactions:", transactions.length);
+    const totalIncome = calculateTotal('income');
+    const totalExpense = calculateTotal('expense');
+    const balance = totalIncome - totalExpense;
+    console.log("Summary rendered: Income:", totalIncome, "Expense:", totalExpense, "Balance:", balance);
+
+    totalIncomeElement.textContent = formatAmount(totalIncome);
+    totalExpenseElement.textContent = formatAmount(totalExpense);
+    balanceElement.textContent = formatAmount(balance);
+}
 
 function validateDescription(description) {
     if (description.trim() === "") {
@@ -97,6 +123,8 @@ function renderTransactions() {
     });
 
     emptyMessage.hidden = transactions.length > 0;
+
+    renderSummary();
 }
 
 function resetForm() {
