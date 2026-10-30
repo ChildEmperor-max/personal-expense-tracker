@@ -97,3 +97,19 @@ function renderTransactions() {
 
     emptyMessage.hidden = transactions.length > 0;
 }
+
+function resetForm() {
+    dateInput.value = new Date().toISOString().split('T')[0];
+}
+
+function handleFormSubmit(event) {
+    event.preventDefault();
+
+    if (!validateForm()) {
+        return;
+    }
+
+    transactions.push(createTransaction());
+    renderTransactions();
+    resetForm();
+}
