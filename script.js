@@ -113,3 +113,7 @@ function handleFormSubmit(event) {
     renderTransactions();
     resetForm();
 }
+
+form.addEventListener('submit', handleFormSubmit);
+setDefaultDate();
+renderTransactions();
