@@ -1,4 +1,5 @@
 let transactions = [];
+let editingId = null;
 
 const totalIncomeElement = document.getElementById('total-income');
 const totalExpenseElement = document.getElementById('total-expenses');
@@ -151,3 +152,7 @@ function handleFormSubmit(event) {
 form.addEventListener('submit', handleFormSubmit);
 setDefaultDate();
 renderTransactions();
+
+const formHeading = document.getElementById('form-heading');
+const submitButton = document.getElementById('submit-button');
+const cancelButton = document.getElementById('cancel-edit-button');
