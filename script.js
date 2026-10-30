@@ -103,6 +103,10 @@ function resetForm() {
     setDefaultDate();
 }
 
+function setDefaultDate() {
+    dateInput.value = new Date().toISOString().split('T')[0];
+}
+
 function handleFormSubmit(event) {
     event.preventDefault();
 
