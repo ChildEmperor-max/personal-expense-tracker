@@ -12,7 +12,7 @@ const amountError = document.getElementById('amount-error');
 const dateError = document.getElementById('date-error');
 
 const transactionList = document.getElementById('transaction-list');
-const emtyMessage = document.getElementById('empty-message');
+const emptyMessage = document.getElementById('empty-message');
 
 function validateDescription(description) {
     if (description.trim() === "") {
@@ -22,7 +22,7 @@ function validateDescription(description) {
 }
 
 function validateAmount(amountText) {
-    const amount = number(amountText);
+    const amount = Number(amountText);
 
     if (amountText.trim() === "" || Number.isNaN(amount)) {
         return "Please enter a valid amount.";
@@ -39,9 +39,9 @@ function validateDate(date) {
     }
 }
 
-function shoowError(errorElement, inputElement, message) {
+function showError(errorElement, inputElement, message) {
     errorElement.textContent = message;
-    inputElement.classlist.toggle("input-invalid", message !== "");
+    inputElement.classList.toggle("input-invalid", message !== "");
 }
 
 function validateForm() {
