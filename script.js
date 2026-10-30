@@ -160,3 +160,20 @@ renderTransactions();
 const formHeading = document.getElementById('form-heading');
 const submitButton = document.getElementById('submit-button');
 const cancelButton = document.getElementById('cancel-edit-button');
+
+function deleteTransasaction(id) {
+    const confirmed = confirm('Delete this transaction?');
+    if (!confirmed) {
+        return;
+    }
+
+    transactions  = transactions.filter(function(transaction) {
+        return transaction.id !== id;
+    });
+
+    if (editingId === id) {
+        exitEditMode();
+    }
+
+    renderTransactions();
+}
