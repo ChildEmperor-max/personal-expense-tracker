@@ -177,3 +177,50 @@ function deleteTransasaction(id) {
 
     renderTransactions();
 }
+
+function startEdit(id) {
+    const transaction = transactions.find(function(item) {
+        return item.id === id;
+    });
+
+    if (!transaction) {
+        return;
+    }
+    
+    editingId = id;
+
+    descriptionInput.value = transaction.description;
+    amountInput.value = transaction.amount;
+    typeInput.value = transaction.type;
+    CatergoryInput.value = transaction.category;
+    dateInput.value = transaction.date;
+
+    formHeading.textContent = 'Edit Transaction';
+    submitButton.textContent = 'Save Changes';
+    cancelEditButton.textContent = false;
+
+    form.scrollIntoView();
+}
+
+function exitEditMode() {
+    editingId = null;
+
+    formHeading.textContent = 'Add Transaction';
+    submitButton.textContent = 'Add Transaction';
+    cancelEditButton.textContent = true;
+
+    showError(descriptionError, descriptionInput,'');
+    showError(amountError, amountInput, '');
+    showError(dateError, dateInput, '');
+
+    resetForm();
+}
+
+function updateTransaction(id) {
+    const updated = createTransaction();
+    updated.id = id;
+    
+    transactions = transactions.map(function(transaction) {
+        return transaction.id === id ? updated : transaction;
+    });
+}
