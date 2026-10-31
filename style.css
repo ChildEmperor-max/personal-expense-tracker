@@ -196,8 +196,17 @@ td button {
 
 .filters {
     display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
     margin-bottom: var(--space);
+}
+
+#search-input {
+    grid-column: 1 / -1;
+}
+
+.filters select {
+    min-width: 0;
 }
 
 .table-wrapper {
