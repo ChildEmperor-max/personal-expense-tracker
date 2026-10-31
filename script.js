@@ -250,3 +250,24 @@ function handleTableClick(event) {
 
 transactionList.addEventListener('click', handleTableClick);
 cancelEditButton.addEventListener('click', exitEditMode);
+
+function getFilteredTransactions() {
+    const searchText = searchInput.value.trim().toLowerCase();
+    const selectedType = filterTypeSelect.value;
+    const selectedCategory =filterCategorySelect.value;
+
+    return transactions.filter(function(transaction) {
+        const matchesSearch = transaction.description
+            .toLowerCase
+            .includes(searchText);
+
+        const matchesType =
+            selectedType === 'all' || transaction.type === selectedType;
+
+        const matchesCategory =
+            selectedCategory === 'all' || transaction.category === selectedCategory;
+
+        
+        return matchesSearch && matchesType && matchesCategory;
+    });
+}
