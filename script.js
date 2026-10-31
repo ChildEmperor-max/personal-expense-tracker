@@ -30,11 +30,9 @@ function calculateTotal(type) {
 }
 
 function renderSummary() {
-    console.log("Rendering summary, transactions:", transactions.length);
     const totalIncome = calculateTotal('income');
     const totalExpense = calculateTotal('expense');
     const balance = totalIncome - totalExpense;
-    console.log("Summary rendered: Income:", totalIncome, "Expense:", totalExpense, "Balance:", balance);
 
     totalIncomeElement.textContent = formatAmount(totalIncome);
     totalExpenseElement.textContent = formatAmount(totalExpense);
@@ -167,13 +165,13 @@ const formHeading = document.getElementById('form-heading');
 const submitButton = document.getElementById('submit-button');
 const cancelEditButton = document.getElementById('cancel-edit-button');
 
-function deleteTransasaction(id) {
+function deleteTransaction(id) {
     const confirmed = confirm('Delete this transaction?');
     if (!confirmed) {
         return;
     }
 
-    transactions  = transactions.filter(function(transaction) {
+    transactions = transactions.filter(function(transaction) {
         return transaction.id !== id;
     });
 
@@ -233,15 +231,14 @@ function updateTransaction(id) {
 
 function handleTableClick(event) {
     const button = event.target.closest('button');
-    console.log('button', button)
-    if(button) {
+    if (!button) {
         return;
     }
 
     const id = Number(button.dataset.id);
-    console.log('action', button.dataset.action, 'id', id);
+
     if (button.dataset.action === 'delete') {
-        deleteTransasaction(id);
+        deleteTransaction(id);
     } else if (button.dataset.action === 'edit') {
         startEdit(id);
     }
