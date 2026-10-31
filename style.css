@@ -8,6 +8,12 @@
     --color-primary-dark: #2448c2;
     --color-income: #1a8f4c;
     --color-expense: #d64545;
+    --color-field-bg: #f5f7fa;
+    --color-border-strong: #c4ccd6;
+    --color-placeholder: #9aa5b1;
+    --color-primary-soft: rgba(47, 91, 234, 0.15);
+    --color-expense-soft: rgba(214, 69, 69, 0.15);
+    --field-height: 2.75rem;
     --radius: 8px;
     --space: 1rem;
 }
