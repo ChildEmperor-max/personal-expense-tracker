@@ -177,6 +177,34 @@ select {
     flex-wrap: wrap;
 }
 
+.input-prefix-wrapper {
+    position: relative;
+}
+
+.input-prefix {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    pointer-events: none;
+}
+
+.input-prefix-wrapper input {
+    padding-left: 1.75rem;
+}
+
+input[type="number"]::--webkit-outer-spin-button,
+input[type="number"]::--webkit-inner-spin-button {
+    -webkit-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
 /* Buttons */
 button {
     padding: 0.6rem 1rem;
