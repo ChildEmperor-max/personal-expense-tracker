@@ -120,22 +120,39 @@ main {
     margin-bottom: 0.25rem;
 }
 
-input, select {
+input,
+select {
     width: 100%;
-    padding: 0.6rem 0.75rem;
+    height: var(--field-height);
+    padding: 0 0.75rem;
     font-size: 1rem;
     font-family: inherit;
     color: var(--color-text);
-    background-color:#ffffff;
-    border: 1px solid var(--clor-border);
+    background-color: var(--color-field-bg);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius);
+    -webkit-appearance: none;
+    appearance: none;
 }
 
-input:focus, 
-select:focus,
-button:focus-visible {
-    outline: 2px solid var (--color-primary);
-    outline-offset: 1px;
+input::placeholder {
+    color: var(--color-placeholder);
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    background-color: var(--color-surface);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+select {
+    padding-right: 2.2rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%236b7785' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.85rem center;
+    cursor: pointer;
 }
 
 .error-message {
@@ -145,8 +162,13 @@ button:focus-visible {
     min-height: 1.2rem;
 }
 
-.input-invalid {
+.input-invalid 
+.input-invalid:focus {
     border-color: var(--color-expense);
+}
+
+.input-invalid:focus {
+    box-shadow: 0 0 0 3px var(--color-expense-soft);
 }
 
 .form-actions {
@@ -166,6 +188,11 @@ button {
     border: none;
     border-radius: var(--radius);
     cursor: pointer;
+}
+
+button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
 button:hover {
