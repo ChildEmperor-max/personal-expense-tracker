@@ -274,3 +274,7 @@ function getFilteredTransactions() {
         return matchesSearch && matchesType && matchesCategory;
     });
 }
+
+searchInput.addEventListener('input', renderTransactions);
+filterTypeSelect.addEventListener('change', renderTransactions);
+filterCategorySelect.addEventListener('change', renderTransactions);
