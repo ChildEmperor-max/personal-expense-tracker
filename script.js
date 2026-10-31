@@ -129,11 +129,14 @@ function createTransactionRow(transaction) {
 function renderTransactions() {
     transactionList.innerHTML = "";
 
-    transactions.forEach(function (transaction) {
+    const visibleTransactions = getFilteredTransactions();
+
+
+    visibleTransactions.forEach(function (transaction) {
         transactionList.appendChild(createTransactionRow(transaction));
     });
 
-    emptyMessage.hidden = transactions.length > 0;
+    emptyMessage.hidden = visibleTransactions.length > 0;
 
     renderSummary();
 }
