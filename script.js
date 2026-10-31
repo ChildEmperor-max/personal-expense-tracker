@@ -165,7 +165,7 @@ renderTransactions();
 
 const formHeading = document.getElementById('form-heading');
 const submitButton = document.getElementById('submit-button');
-const cancelButton = document.getElementById('cancel-edit-button');
+const cancelEditButton = document.getElementById('cancel-edit-button');
 
 function deleteTransasaction(id) {
     const confirmed = confirm('Delete this transaction?');
@@ -230,3 +230,22 @@ function updateTransaction(id) {
         return transaction.id === id ? updated : transaction;
     });
 }
+
+function handleTableClick(event) {
+    const button = event.target.closest('button');
+    console.log('button', button)
+    if(button) {
+        return;
+    }
+
+    const id = Number(button.dataset.id);
+    console.log('action', button.dataset.action, 'id', id);
+    if (button.dataset.action === 'delete') {
+        deleteTransasaction(id);
+    } else if (button.dataset.action === 'edit') {
+        startEdit(id);
+    }
+}
+
+transactionList.addEventListener('click', handleTableClick);
+cancelEditButton.addEventListener('click', exitEditMode);
