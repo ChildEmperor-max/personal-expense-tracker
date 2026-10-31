@@ -148,7 +148,13 @@ function handleFormSubmit(event) {
         return;
     }
 
-    transactions.push(createTransaction());
+    if (editingId === null) {
+        transactions.push(createTransaction());
+    } else {
+        updateTransaction(editingId);
+        exitEditMode();
+    }
+
     renderTransactions();
     resetForm();
 }
