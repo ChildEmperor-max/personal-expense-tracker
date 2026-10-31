@@ -261,7 +261,7 @@ function getFilteredTransactions() {
 
     return transactions.filter(function(transaction) {
         const matchesSearch = transaction.description
-            .toLowerCase
+            .toLowerCase()
             .includes(searchText);
 
         const matchesType =
@@ -270,7 +270,6 @@ function getFilteredTransactions() {
         const matchesCategory =
             selectedCategory === 'all' || transaction.category === selectedCategory;
 
-        
         return matchesSearch && matchesType && matchesCategory;
     });
 }
