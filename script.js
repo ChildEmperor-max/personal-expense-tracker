@@ -19,6 +19,14 @@ const dateError = document.getElementById('date-error');
 const transactionList = document.getElementById('transaction-list');
 const emptyMessage = document.getElementById('empty-message');
 
+const formHeading = document.getElementById('form-heading');
+const submitButton = document.getElementById('submit-button');
+const cancelEditButton = document.getElementById('cancel-edit-button');
+
+const searchInput = document.getElementById('search-input');
+const filterTypeSelect = document.getElementById('filter-type');
+const filterCategorySelect = document.getElementById('filter-category');
+
 function calculateTotal(type) {
     return transactions
         .filter(function (transaction) {
@@ -160,10 +168,6 @@ function handleFormSubmit(event) {
 form.addEventListener('submit', handleFormSubmit);
 setDefaultDate();
 renderTransactions();
-
-const formHeading = document.getElementById('form-heading');
-const submitButton = document.getElementById('submit-button');
-const cancelEditButton = document.getElementById('cancel-edit-button');
 
 function deleteTransaction(id) {
     const confirmed = confirm('Delete this transaction?');
