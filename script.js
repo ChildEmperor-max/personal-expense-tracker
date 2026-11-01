@@ -129,8 +129,10 @@ function createTransactionRow(transaction) {
 function renderTransactions() {
     transactionList.innerHTML = "";
 
-    const visibleTransactions = getFilteredTransactions();
-
+    const visibleTransactions = sortTransactions(
+        getFilteredTransactions(),
+        sortSelect.value
+    );
 
     visibleTransactions.forEach(function (transaction) {
         transactionList.appendChild(createTransactionRow(transaction));
