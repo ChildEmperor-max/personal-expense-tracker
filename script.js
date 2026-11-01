@@ -350,3 +350,4 @@ function sortTransactions(list, sortBy) {
     });
 }
 
+sortSelect.addEventListener('change', renderTransactions);
