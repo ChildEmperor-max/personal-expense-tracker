@@ -328,3 +328,25 @@ function formatAmountInput() {
 amountInput.addEventListener('input', formatAmountInput);
 
 lucide.createIcons();
+
+const sortSelect = document.getElementById('sort-select');
+
+function sortTransactions(list, sortBy) {
+    return list.sort(function(a, b) {
+        if (sortBy === 'newest') {
+            result = b.date.localeCompare(a.date);
+        } else if (sortBy === 'oldest') {
+            result = a.date.localeCompare(b.date);
+        } else if (sortBy === 'highest') {
+            result = b.amount - a.amount;
+        } else if (sortBy === 'lowest') {
+            result = a.amount - b.amount;
+        }
+
+        if (result !== 0) {
+            return result;
+        }
+        return b.id - a.id;
+    });
+}
+
