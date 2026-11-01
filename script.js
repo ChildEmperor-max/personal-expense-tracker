@@ -326,3 +326,5 @@ function formatAmountInput() {
 }
 
 amountInput.addEventListener('input', formatAmountInput);
+
+lucide.createIcons();
