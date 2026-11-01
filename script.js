@@ -80,7 +80,7 @@ function showError(errorElement, inputElement, message) {
 
 function validateForm() {
     const descriptionMessage = validateDescription(descriptionInput.value);
-    const amountMessage = validateAmount(amountInput.value);
+    const amountMessage = validateAmount(getAmountText());
     const dateMessage = validateDate(dateInput.value);
 
     showError(descriptionError, descriptionInput, descriptionMessage);
@@ -94,7 +94,7 @@ function createTransaction() {
     return {
         id: Date.now(),
         description: descriptionInput.value.trim(),
-        amount: Number(amountInput.value),
+        amount: Number(getAmountText()),
         type: typeInput.value,
         category: CatergoryInput.value,
         date: dateInput.value 
@@ -202,6 +202,7 @@ function startEdit(id) {
 
     descriptionInput.value = transaction.description;
     amountInput.value = transaction.amount;
+    formatAmountInput();
     typeInput.value = transaction.type;
     CatergoryInput.value = transaction.category;
     dateInput.value = transaction.date;
@@ -323,3 +324,5 @@ function formatAmountInput() {
         amountInput.setSelectionRange(newPosition, newPosition);
     }
 }
+
+amountInput.addEventListener('input', formatAmountInput);
