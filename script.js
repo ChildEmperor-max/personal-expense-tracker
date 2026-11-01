@@ -322,7 +322,6 @@ function formatAmountInput() {
             newPosition++;
         }
         amountInput.setSelectionRange(newPosition, newPosition);
-        console.log('raw:', rawValue, '| caret was:', caretPosition, '| formatted:', formatted, '| new caret:', newPosition);
     }
 }
 
