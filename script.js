@@ -291,7 +291,7 @@ function formatAmountInput() {
         .slice(0, caretPosition)
         .replace(/[^0-9]/g, '').length;
 
-    let cleaned = rawValue.replace(/[^0-9]/g, '');
+    let cleaned = rawValue.replace(/[^0-9.]/g, '');
 
     const firstDot = cleaned.indexOf('.');
     if (firstDot !== -1) {
