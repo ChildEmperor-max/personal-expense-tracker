@@ -311,6 +311,17 @@ td button {
     pointer-events: none;
 }
 
+.sort-icon {
+    position: absolute;
+    right: 8.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+}
+
 .table-wrapper {
     overflow-x: auto;
 }
