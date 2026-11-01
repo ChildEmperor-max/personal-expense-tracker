@@ -289,7 +289,7 @@ function formatAmountInput() {
 
     const charBeforeCaret = rawValue
         .slice(0, caretPosition)
-        .replace(/[^0-9]/g, '').length;
+        .replace(/[^0-9.]/g, '').length;
 
     let cleaned = rawValue.replace(/[^0-9.]/g, '');
 
@@ -322,6 +322,7 @@ function formatAmountInput() {
             newPosition++;
         }
         amountInput.setSelectionRange(newPosition, newPosition);
+        console.log('raw:', rawValue, '| caret was:', caretPosition, '| formatted:', formatted, '| new caret:', newPosition);
     }
 }
 
