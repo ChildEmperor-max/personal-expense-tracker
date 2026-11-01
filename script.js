@@ -277,3 +277,49 @@ function getFilteredTransactions() {
 searchInput.addEventListener('input', renderTransactions);
 filterTypeSelect.addEventListener('change', renderTransactions);
 filterCategorySelect.addEventListener('change', renderTransactions);
+
+function getAmountText() {
+    return amountInput.value.replace(/,/g, '');
+}
+
+function formatAmountInput() {
+    const rawValue = amountInput.value;
+    const caretPosition = amountInput.selectionStart;
+
+    const charBeforeCaret = rawValue
+        .slice(0, caretPosition)
+        .replace(/[^0-9]/g, '').length;
+
+    let cleaned = rawValue.replace(/[^0-9]/g, '');
+
+    const firstDot = cleaned.indexOf('.');
+    if (firstDot !== -1) {
+        cleaned =
+            cleaned.slice(0, firstDot + 1) +
+            cleaned.slice(firstDot + 1).replace(/\./g, '');
+    }
+
+    let [whole, decimal] = cleaned.split('.');
+
+    whole = whole.replace(/^0+(?=\d)/, '');
+    const wholeWithCommas = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    let formatted = wholeWithCommas;
+    if (decimal !== undefined) {
+        formatted += '.' + decimal.slice(0, 2);
+    }
+
+    amountInput.value = formatted;
+
+    if (document.activeElement === amountInput) {
+        let digitsSeen = 0;
+        let newPosition = 0;
+        while (newPosition < formatted.length && digitsSeen < charBeforeCaret) {
+            if (formatted[newPosition] !== ',') {
+                digitsSeen++;
+            }
+            newPosition++;
+        }
+        amountInput.setSelectionRange(newPosition, newPosition);
+    }
+}
