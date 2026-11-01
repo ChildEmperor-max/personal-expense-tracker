@@ -290,6 +290,27 @@ td button {
     min-width: 0;
 }
 
+.sort-wrapper{
+    grid-column: 1 / -1;
+    position: relative;
+}
+
+.sort-wrapper select {
+    height: 2.2rem;
+    font-size: 0.9rem;
+    padding-left: 4.9rem;
+    text-align-last: right;
+}
+
+.sort-label {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    pointer-events: none;
+}
+
 .table-wrapper {
     overflow-x: auto;
 }
