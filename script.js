@@ -170,24 +170,21 @@ function handleFormSubmit(event) {
     resetForm();
 }
 
-form.addEventListener('submit', handleFormSubmit);
-setDefaultDate();
-renderTransactions();
 
 function deleteTransaction(id) {
     const confirmed = confirm('Delete this transaction?');
     if (!confirmed) {
         return;
     }
-
+    
     transactions = transactions.filter(function(transaction) {
         return transaction.id !== id;
     });
-
+    
     if (editingId === id) {
         exitEditMode();
     }
-
+    
     renderTransactions();
 }
 
@@ -195,38 +192,38 @@ function startEdit(id) {
     const transaction = transactions.find(function(item) {
         return item.id === id;
     });
-
+    
     if (!transaction) {
         return;
     }
     
     editingId = id;
-
+    
     descriptionInput.value = transaction.description;
     amountInput.value = transaction.amount;
     formatAmountInput();
     typeInput.value = transaction.type;
     CatergoryInput.value = transaction.category;
     dateInput.value = transaction.date;
-
+    
     formHeading.textContent = 'Edit Transaction';
     submitButton.textContent = 'Save Changes';
     cancelEditButton.textContent = false;
-
+    
     form.scrollIntoView();
 }
 
 function exitEditMode() {
     editingId = null;
-
+    
     formHeading.textContent = 'Add Transaction';
     submitButton.textContent = 'Add Transaction';
     cancelEditButton.textContent = true;
-
+    
     showError(descriptionError, descriptionInput,'');
     showError(amountError, amountInput, '');
     showError(dateError, dateInput, '');
-
+    
     resetForm();
 }
 
@@ -244,9 +241,9 @@ function handleTableClick(event) {
     if (!button) {
         return;
     }
-
+    
     const id = Number(button.dataset.id);
-
+    
     if (button.dataset.action === 'delete') {
         deleteTransaction(id);
     } else if (button.dataset.action === 'edit') {
@@ -254,32 +251,27 @@ function handleTableClick(event) {
     }
 }
 
-transactionList.addEventListener('click', handleTableClick);
-cancelEditButton.addEventListener('click', exitEditMode);
 
 function getFilteredTransactions() {
     const searchText = searchInput.value.trim().toLowerCase();
     const selectedType = filterTypeSelect.value;
     const selectedCategory =filterCategorySelect.value;
-
+    
     return transactions.filter(function(transaction) {
         const matchesSearch = transaction.description
-            .toLowerCase()
-            .includes(searchText);
-
+        .toLowerCase()
+        .includes(searchText);
+        
         const matchesType =
-            selectedType === 'all' || transaction.type === selectedType;
-
+        selectedType === 'all' || transaction.type === selectedType;
+        
         const matchesCategory =
-            selectedCategory === 'all' || transaction.category === selectedCategory;
-
+        selectedCategory === 'all' || transaction.category === selectedCategory;
+        
         return matchesSearch && matchesType && matchesCategory;
     });
 }
 
-searchInput.addEventListener('input', renderTransactions);
-filterTypeSelect.addEventListener('change', renderTransactions);
-filterCategorySelect.addEventListener('change', renderTransactions);
 
 function getAmountText() {
     return amountInput.value.replace(/,/g, '');
@@ -288,32 +280,32 @@ function getAmountText() {
 function formatAmountInput() {
     const rawValue = amountInput.value;
     const caretPosition = amountInput.selectionStart;
-
+    
     const charBeforeCaret = rawValue
-        .slice(0, caretPosition)
-        .replace(/[^0-9.]/g, '').length;
-
+    .slice(0, caretPosition)
+    .replace(/[^0-9.]/g, '').length;
+    
     let cleaned = rawValue.replace(/[^0-9.]/g, '');
-
+    
     const firstDot = cleaned.indexOf('.');
     if (firstDot !== -1) {
         cleaned =
-            cleaned.slice(0, firstDot + 1) +
-            cleaned.slice(firstDot + 1).replace(/\./g, '');
+        cleaned.slice(0, firstDot + 1) +
+        cleaned.slice(firstDot + 1).replace(/\./g, '');
     }
-
+    
     let [whole, decimal] = cleaned.split('.');
-
+    
     whole = whole.replace(/^0+(?=\d)/, '');
     const wholeWithCommas = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
+    
     let formatted = wholeWithCommas;
     if (decimal !== undefined) {
         formatted += '.' + decimal.slice(0, 2);
     }
-
+    
     amountInput.value = formatted;
-
+    
     if (document.activeElement === amountInput) {
         let digitsSeen = 0;
         let newPosition = 0;
@@ -327,7 +319,6 @@ function formatAmountInput() {
     }
 }
 
-amountInput.addEventListener('input', formatAmountInput);
 
 lucide.createIcons();
 
@@ -344,7 +335,7 @@ function sortTransactions(list, sortBy) {
         } else if (sortBy === 'lowest') {
             result = a.amount - b.amount;
         }
-
+        
         if (result !== 0) {
             return result;
         }
@@ -352,4 +343,14 @@ function sortTransactions(list, sortBy) {
     });
 }
 
+form.addEventListener('submit', handleFormSubmit);
+amountInput.addEventListener('input', formatAmountInput);
+searchInput.addEventListener('input', renderTransactions);
+filterTypeSelect.addEventListener('change', renderTransactions);
+filterCategorySelect.addEventListener('change', renderTransactions);
 sortSelect.addEventListener('change', renderTransactions);
+transactionList.addEventListener('click', handleTableClick);
+cancelEditButton.addEventListener('click', exitEditMode);
+
+setDefaultDate();
+renderTransactions();
