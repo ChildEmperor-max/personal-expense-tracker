@@ -28,6 +28,9 @@ const filterTypeSelect = document.getElementById('filter-type');
 const filterCategorySelect = document.getElementById('filter-category');
 const sortSelect = document.getElementById('sort-select');
 
+const sortIconContainer = document.getElementById('sort-icon');
+const sortTextElement = document.getElementById('sort-text');
+
 function calculateTotal(type) {
     return transactions
         .filter(function (transaction) {
@@ -338,12 +341,19 @@ function sortTransactions(list, sortBy) {
     });
 }
 
-function rederIcons() {
+function renderIcons() { 
     if (window.lucide) {
         lucide.createIcons();
     }
 }
 
+function updateSortDisplay() {
+    sortIconContainer.innerHTML =
+        `<i data-lucide="${sortIcons[sortSelect.value]}"></i>`;
+    sortTextElement.textContent =
+        sortSelect.options[sortSelect.selectedIndex].text;
+    renderIcons();
+}
 
 
 form.addEventListener('submit', handleFormSubmit);
@@ -354,6 +364,10 @@ filterCategorySelect.addEventListener('change', renderTransactions);
 sortSelect.addEventListener('change', renderTransactions);
 transactionList.addEventListener('click', handleTableClick);
 cancelEditButton.addEventListener('click', exitEditMode);
+sortSelect.addEventListener('change', updateSortDisplay);
+sortSelect.addEventListener('change', renderTransactions);
 
 setDefaultDate();
+updateSortDisplay();
+renderIcons();
 renderTransactions();
