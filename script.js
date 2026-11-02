@@ -26,6 +26,7 @@ const cancelEditButton = document.getElementById('cancel-edit-button');
 const searchInput = document.getElementById('search-input');
 const filterTypeSelect = document.getElementById('filter-type');
 const filterCategorySelect = document.getElementById('filter-category');
+const sortSelect = document.getElementById('sort-select');
 
 function calculateTotal(type) {
     return transactions
@@ -272,7 +273,6 @@ function getFilteredTransactions() {
     });
 }
 
-
 function getAmountText() {
     return amountInput.value.replace(/,/g, '');
 }
@@ -319,10 +319,7 @@ function formatAmountInput() {
     }
 }
 
-
 lucide.createIcons();
-
-const sortSelect = document.getElementById('sort-select');
 
 function sortTransactions(list, sortBy) {
     return list.sort(function(a, b) {
