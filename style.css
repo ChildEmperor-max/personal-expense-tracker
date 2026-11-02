@@ -313,13 +313,17 @@ td button {
 
 .sort-icon {
     position: absolute;
-    right: 8.5rem;
+    left: 0.75rem;
     top: 50%;
     transform: translateY(-50%);
+    display: flex;
     color: var(--color-text-muted);
-    width: 16px;
-    height: 16px;
     pointer-events: none;
+}
+
+.sort-icon svg {
+    width: 1rem;
+    height: 1rem;
 }
 
 .table-wrapper {
