@@ -319,8 +319,6 @@ function formatAmountInput() {
     }
 }
 
-lucide.createIcons();
-
 function sortTransactions(list, sortBy) {
     return list.sort(function(a, b) {
         if (sortBy === 'newest') {
@@ -338,6 +336,12 @@ function sortTransactions(list, sortBy) {
         }
         return b.id - a.id;
     });
+}
+
+function rederIcons() {
+    if (window.lucide) {
+        lucide.createIcons();
+    }
 }
 
 form.addEventListener('submit', handleFormSubmit);
