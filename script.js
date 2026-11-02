@@ -349,12 +349,21 @@ function renderIcons() {
 
 function updateSortDisplay() {
     sortIconContainer.innerHTML =
-        `<i data-lucide="${sortIcons[sortSelect.value]}"></i>`;
+        `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            ${sortIcons[sortSelect.value]}
+         </svg>`;
     sortTextElement.textContent =
         sortSelect.options[sortSelect.selectedIndex].text;
     renderIcons();
 }
 
+const sortIcons = {
+    newest:  '<path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M11 4h10"/><path d="M11 8h7"/><path d="M11 12h4"/>',
+    oldest:  '<path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M11 12h4"/><path d="M11 16h7"/><path d="M11 20h10"/>',
+    highest: '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
+    lowest:  '<polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/>'
+};
 
 form.addEventListener('submit', handleFormSubmit);
 amountInput.addEventListener('input', formatAmountInput);
