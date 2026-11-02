@@ -114,8 +114,14 @@
         </select>
 
         <div class="sort-wrapper">
-          <span class="sort-icon" id="sort-icon" aria-hidden="true"></span>
           <span class="sort-label" aria-hidden="true">Sort by:</span>
+
+          <span class="sort-display" aria-hidden="true">
+            <span class="sort-icon" id="sort-icon"></span>
+            <span id="sort-text">Newest First</span>
+            <i data-lucide="chevron-down" class="sort-chevron"></i>
+          </span>
+
           <select id="sort-select" aria-label="Sort Transations">
             <option value="newest">Newest First</option>
             <option value="oldest">Oldest First</option>

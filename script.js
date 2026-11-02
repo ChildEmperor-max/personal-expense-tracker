@@ -344,6 +344,8 @@ function rederIcons() {
     }
 }
 
+
+
 form.addEventListener('submit', handleFormSubmit);
 amountInput.addEventListener('input', formatAmountInput);
 searchInput.addEventListener('input', renderTransactions);
