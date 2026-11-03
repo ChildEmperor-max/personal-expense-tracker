@@ -100,6 +100,9 @@ function validateOnChange(input, errorElemenr, validate) {
     });
 }
 
+validateOnChange(typeInput, typeError, validateType);
+validateOnChange(CatergoryInput, categoryError, validateCategory);
+
 function showError(errorElement, inputElement, message) {
     errorElement.textContent = message;
     inputElement.classList.toggle("input-invalid", message !== "");
