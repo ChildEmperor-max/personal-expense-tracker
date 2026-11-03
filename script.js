@@ -102,13 +102,23 @@ function showError(errorElement, inputElement, message) {
 function validateForm() {
     const descriptionMessage = validateDescription(descriptionInput.value);
     const amountMessage = validateAmount(getAmountText());
+    const typeMessage = validateType(typeInput.value);
+    const categoryMessage = validateCategory(CatergoryInput.value);
     const dateMessage = validateDate(dateInput.value);
 
     showError(descriptionError, descriptionInput, descriptionMessage);
     showError(amountError, amountInput, amountMessage);
+    showError(typeError, typeInput, typeMessage);
+    showError(categoryError, CatergoryInput, categoryMessage);
     showError(dateError, dateInput, dateMessage);
 
-    return descriptionMessage === "" && amountMessage === "" && dateMessage === "";
+    return (
+        descriptionMessage === "" &&
+        amountMessage === "" &&
+        typeMessage === "" &&
+        categoryMessage === "" &&
+        dateMessage === ""
+    );
 }
 
 function createTransaction() {
