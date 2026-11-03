@@ -178,8 +178,17 @@ select {
 .error-message {
     color: var(--color-expense);
     font-size: 0.85rem;
+    margin-top: 0;
+    min-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease, margin-top 0.2s ease, opacity 0.2s ease;
+}
+
+.error-message:not(:empty) {
+    max-height: 3rem;
     margin-top: 0.25rem;
-    min-height: 1.2rem;
+    opacity: 1;
 }
 
 .input-invalid 
