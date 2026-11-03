@@ -94,6 +94,12 @@ function validateCategory(category) {
     return "";
 }
 
+function validateOnChange(input, errorElemenr, validate) {
+    input.addEventListener('change', function() {
+        showError(errorElement, input, validate(input.value));
+    });
+}
+
 function showError(errorElement, inputElement, message) {
     errorElement.textContent = message;
     inputElement.classList.toggle("input-invalid", message !== "");
