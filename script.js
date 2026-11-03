@@ -324,6 +324,8 @@ function formatAmountInput() {
 
 function sortTransactions(list, sortBy) {
     return list.sort(function(a, b) {
+        let result = 0;
+
         if (sortBy === 'newest') {
             result = b.date.localeCompare(a.date);
         } else if (sortBy === 'oldest') {
@@ -336,6 +338,10 @@ function sortTransactions(list, sortBy) {
         
         if (result !== 0) {
             return result;
+        }
+
+        if (sortBy === 'oldest') {
+            return a.id - b.id;
         }
         return b.id - a.id;
     });
