@@ -175,6 +175,14 @@ select {
     cursor: pointer;
 }
 
+select:invalid {
+    color: var(--color-placeholder);
+}
+
+select option {
+    color: var(--color-text);
+}
+
 .error-message {
     color: var(--color-expense);
     font-size: 0.85rem;
