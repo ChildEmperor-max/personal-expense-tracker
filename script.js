@@ -31,6 +31,9 @@ const sortSelect = document.getElementById('sort-select');
 const sortIconContainer = document.getElementById('sort-icon');
 const sortTextElement = document.getElementById('sort-text');
 
+const typeError = document.getElementById('type-error');
+const categoryError = document.getElementById('category-error');
+
 function calculateTotal(type) {
     return transactions
         .filter(function (transaction) {
@@ -73,6 +76,20 @@ function validateAmount(amountText) {
 function validateDate(date) {
     if (date === "") {
         return "Please choose a date.";
+    }
+    return "";
+}
+
+function validateType(type) {
+    if (type === "") {
+        return "Please select a type.";
+    }
+    return "";
+}
+
+function validateCategory(category) {
+    if (category === "") {
+        return "Please select a category.";
     }
     return "";
 }
