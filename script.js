@@ -94,7 +94,7 @@ function validateCategory(category) {
     return "";
 }
 
-function validateOnChange(input, errorElemenr, validate) {
+function validateOnChange(input, errorElement, validate) {
     input.addEventListener('change', function() {
         showError(errorElement, input, validate(input.value));
     });
@@ -145,6 +145,11 @@ function formatAmount(amount) {
     return amount.toLocaleString('en-US', { style: 'currency', currency: 'PHP' });
 }
 
+function formatDate(dateText) {
+    const [year, month, day] = dateText.split('-');
+    return `${month}/${day}/${year}`;
+}
+
 function createTransactionRow(transaction) {
     const row = document.createElement('tr');
 
@@ -155,7 +160,7 @@ function createTransactionRow(transaction) {
     row.innerHTML = `
         <td>${transaction.description}</td>
         <td>${transaction.category}</td>
-        <td>${transaction.date}</td>
+        <td>${formatDate(transaction.date)}</td>
         <td>${transaction.type}</td>
         <td class="${amountClass}">${sign}${formatAmount(transaction.amount)}</td>
         <td>
