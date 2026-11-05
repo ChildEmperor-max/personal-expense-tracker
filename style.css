@@ -13,6 +13,7 @@
     --color-placeholder: #9aa5b1;
     --color-primary-soft: rgba(47, 91, 234, 0.15);
     --color-expense-soft: rgba(214, 69, 69, 0.15);
+    --shadow-menu: 0 8px 24px rgba(31, 41, 51, 0.12), 0 2px 6px rgba(31, 41, 51, 0.08);
     --field-height: 2.75rem;
     --radius: 8px;
     --space: 1rem;
@@ -406,62 +407,53 @@ th {
     text-align: center;
 }
 
-@media (hover: hover) {
-    @supports (appearance: : base-select) {
+.custom-select {
+    position: relative;
+}
 
-        .form-group select,
-        .form-group select::picker(select),
-        .filters > select,
-        .filters > select::picker(select) {
-            appearance: base-select;
-        }
+.custom-select-native {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
 
-        .form-group,
-        .filters > select {
-            background-image: none;
-            padding: 0 0.75rem;
-        }
+.custom-select-trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: var(--field-height);
+    padding: 0 2.25rem 0 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: inherit;
+    text-align: left;
+    color: var(--color-text);
+    background-color: var(--color-field-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    cursor: pointer;
+}
 
-        .form-group select::picker(select),
-        .filters > select::picker(select) {
-            margin-top: 6px;
-            padding: 6px;
-            background-color: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(31, 41, 51, 0.12);
-        }
+.custom-select-trigger:hover {
+    background-color: var(--color-field-bg);
+    border-color: var(--color-border-strong);
+}
 
-        .form-group select option,
-        .filters > select option {
-            padding: 0.55rem 0.75rem;
-            border: 10px;
-            color: var(--color-text);
-            cursor: pointer;
-        }
-
-        .form-group select option:hover,
-        .filters > select option:hover {
-            background-color: var(--color-field-bg);
-        }
-
-        .form-group select option:checked,
-        .filters > select option:checked {
-            background-color: var(--color-primary-soft);
-            color: var(--color-primary);
-        }
-
-        .form-group select option:disabled,
-        .filters > select option:disabled {
-            color: var(--color-placeholder);
-            cursor: default;
-        }
-
-        .form-group select option::checkmark,
-        .filters > select option::checkmark {
-            display: none;
-        }
-    }
+.custom-select-menu {
+    position: absolute;
+    top: calc(100% + 0.6rem);
+    right: 0;
+    width: 90%;
+    z-index: 20;
+    padding: 0.5rem;
+    background-color: var(--color-surface);
+    border-radius: var(--radius);
+    box-shadow: var(-);
 }
 
 /* Desktop styles */
