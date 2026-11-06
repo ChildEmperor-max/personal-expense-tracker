@@ -478,6 +478,16 @@ th {
     transform: rotate(180deg);
 }
 
+.custom-select-native.input-invalid ~ .custom-select-trigger {
+    border-color: var(--color-expense);
+}
+
+.custom-select-native.input-invalid ~ .custom-select-trigger:focus-visible,
+.custom-select.is-open .custom-select-native.input-invalid ~ .custom-select-trigger {
+    border-color: var(--color-expense);
+    box-shadow: 0 0 0 3px var(--color-expense-soft);
+}
+
 .custom-select-menu {
     position: absolute;
     top: calc(100% + 0.6rem);
