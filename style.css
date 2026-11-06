@@ -444,6 +444,40 @@ th {
     border-color: var(--color-border-strong);
 }
 
+.custom-select-trigger:focus-visible,
+.custom-select.is-open .custom-select-trigger {
+    outline: none;
+    background-color: var(--color-surface);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.custom-select-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.custom-select-trigger.is-placeholder .custom-select-text {
+    color: var(--color-placeholder);
+}
+
+.custom-select-cheveron {
+    position: relative;
+    right: 0.85rem;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    margin-top: -6px;
+    color: var(--color-text-muted);
+    pointer-events: none;
+    transition: transform 0.2s ease;
+}
+
+.custom-select.is-open .custom-select-cheveron {
+    transform: rotate(180deg);
+}
+
 .custom-select-menu {
     position: absolute;
     top: calc(100% + 0.6rem);
