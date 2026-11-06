@@ -491,13 +491,26 @@ th {
 .custom-select-menu {
     position: absolute;
     top: calc(100% + 0.6rem);
+    left: 0;
     right: 0;
-    width: 90%;
     z-index: 20;
-    padding: 0.5rem;
+    padding: 0.5rem 0.35rem 0.35rem;
     background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius);
-    box-shadow: var(-);
+    box-shadow: var(--shadow-menu);
+
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0s linear 0.15s;
+}
+
+.custom-select.is-open ,.custom-select-menu {
+    visibility: visible;
+    opacity: 0;
+    transform: translateY(0);
+    transition-delay: 0s;
 }
 
 /* Desktop styles */
