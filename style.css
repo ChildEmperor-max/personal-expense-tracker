@@ -553,6 +553,19 @@ th {
     outline-offset: -2px;
 }
 
+.custom-select-option.is-selected {
+    color: var(--color-primary-soft);
+    font-weight: 600;
+    background-color: var(--color-primary-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .custom-select-menu,
+    .custom-select-cheveron {
+        transition: none;
+    }
+}
+
 /* Desktop styles */
 @media(min-width: 700px) {
     .summary {
