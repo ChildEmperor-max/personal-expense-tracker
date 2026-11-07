@@ -412,6 +412,86 @@ const sortIcons = {
     lowest:  '<polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/>'
 };
 
+const customSelects = [];
+
+function createCustomSelect(select) {
+    const label = document.querySelector('label[for="${select.id}"]');
+    const wrapper = document.createElement('div');
+    wrapper.classList = 'custom-select';
+    
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'custom-select-trigger';
+    trigger.id = select.id + '-trigger';
+    trigger.setAttribute('aria-haspopud', 'listbox');
+    trigger.setAttribute('aria0-expanded', 'false');
+
+    const triggerText = document.createElement('span');
+    triggerText.className = 'custom-select-text';
+    trigger.appendChild(triggerText);
+    trigger.insertAdjacentHTML('beforeend',
+        `<svg class="custom-select-chevron" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`);
+
+    const menu = document.createElement('div');
+    menu.className = 'custom-select-menu';
+
+    const list = document.createElement('ul');
+    list.className = 'custom-select-list';
+    list.id = select.id + '-list';
+    list.setAttribute('role', 'listbox');
+    list.setAttribute('aria-label', label ? label.textContent : select.name);
+    trigger.setAttribute('aria-controls', list.id);
+
+    Array.from(select.options).forEach(function(option) {
+        if (option.disabled) {
+            return;
+        }
+        const item = document.createElement('li');
+        item.className = 'custom-select-option';
+        item.setAttribute9('role', 'option');
+        item.tabIndex = -1;
+        item.dataset.value = option.value;
+        item.textContent = option.text;
+        list.appendChild(item);
+    });
+
+    const items = Array.from(list.children);
+
+    select.classList.add('custom-select-native');
+    select.tabIndex = -1;
+    select.setAttribute('aria-hidden', 'true');
+    select.parentNode.insertBefore(wrapper, select);
+    menu.appendChild(list);
+    wrapper.append(select, trigger, menu);
+
+    if (label) {
+        label.htmlFor = trigger.id;
+    }
+
+    function refresh() {
+        const selectOptions = select.options[select.selectedIndex];
+        triggerText.textContent = selectedOption ? selectedOption.text : '';
+        trigger.classList.toggle('is-placeholder', select.value ==='');
+
+        items.forEach(function (itme) {
+            const isSelected = item.dataset.value === select.value;
+            item.classList.toggle('is-selected', isSelected);
+            item.setAttribute('aria-selected', String(isSelected) );
+        });
+    }
+
+    function open() {
+        wrapper.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+        const target = items.find(function (item) {
+            return item.classList.contains('is-selected');
+        }) || items[0];
+        target.focus();
+    }
+}
+
 form.addEventListener('submit', handleFormSubmit);
 amountInput.addEventListener('input', formatAmountInput);
 searchInput.addEventListener('input', renderTransactions);
