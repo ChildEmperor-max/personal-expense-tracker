@@ -557,6 +557,15 @@ function createCustomSelect(select) {
             close(false);
         }
     });
+
+    document.addEventListener('click', function (event) {
+        if (!wrapper.contains(event.target)) {
+            close(false);
+        }
+    });
+
+    refresh();
+    return { refresh: refresh };
 }
 
 form.addEventListener('submit', handleFormSubmit);
