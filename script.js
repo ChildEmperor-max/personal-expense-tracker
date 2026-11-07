@@ -490,6 +490,44 @@ function createCustomSelect(select) {
         }) || items[0];
         target.focus();
     }
+
+    function close(returnFocus) {
+        wrapper.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        if (returnFocus) {
+            trigger.focus();
+        }
+    }
+
+    function choose(item) {
+        select.value = item.dataset.value;
+
+        select.dispatchEvent(new Event('change', {bubbles: true}));
+        refresh();
+        close();
+    }
+
+    trigger.addEventListener('click', function() {
+        if (wrapper.classList.contains('is-open')) {
+            close(false);
+        } else {
+            open();
+        }
+    });
+
+    trigger.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+            event.preventDefault();
+            open();
+        }
+    });
+
+    list.addEventListener('click', function(event) {
+        const item = event.target.closest('.custom-select-option');
+        if (item) {
+            choose(item);
+        }
+    });
 }
 
 form.addEventListener('submit', handleFormSubmit);
