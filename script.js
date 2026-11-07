@@ -528,6 +528,35 @@ function createCustomSelect(select) {
             choose(item);
         }
     });
+
+    list.addEventListener('keydown', function (event) {
+        const currentIndex = items.indexOf(document.activeElement);
+
+        if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            items[Math.min(currentIndex + 1, items.length - 1)].focus();
+        } else if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            items[Math.max(currentIndex - 1, 0)].focus();
+        } else if (event.key === 'Home') {
+            event.preventDefault();
+            items[0].focus();
+        }  else if (event.key === 'End') {
+            event.preventDefault();
+            items[items.length - 1].focus();
+        } else if (event.key === 'Enter' || event. key === ' ') {
+            event.preventDefault();
+            if (currentIndex >= 0) {
+                choose(items[currentIndex]);
+            }
+        } else if (event.key === 'Escape') {
+            event.preventDefault();
+            close(true);
+        } else if (event.key === 'Tab') {
+            event.preventDefault();
+            close(false);
+        }
+    });
 }
 
 form.addEventListener('submit', handleFormSubmit);
