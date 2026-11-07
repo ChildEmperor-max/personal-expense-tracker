@@ -568,6 +568,16 @@ function createCustomSelect(select) {
     return { refresh: refresh };
 }
 
+function refreshCustomSelects() {
+    customSelects.forEach(function (customSelect) {
+        customSelect.refresh();
+    });
+}
+
+document.querySelectorAll('select[data-custom-select]').forEach(function (select) {
+    customSelects.push(createCustomSelect(select));
+});
+
 form.addEventListener('submit', handleFormSubmit);
 amountInput.addEventListener('input', formatAmountInput);
 searchInput.addEventListener('input', renderTransactions);
