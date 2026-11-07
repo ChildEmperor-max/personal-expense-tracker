@@ -191,6 +191,7 @@ function renderTransactions() {
 function resetForm() {
     form.reset();
     setDefaultDate();
+    refreshCustomSelects();
 }
 
 function setDefaultDate() {
@@ -250,6 +251,7 @@ function startEdit(id) {
     typeInput.value = transaction.type;
     CatergoryInput.value = transaction.category;
     dateInput.value = transaction.date;
+    refreshCustomSelects();
     
     formHeading.textContent = 'Edit Transaction';
     submitButton.textContent = 'Save Changes';
