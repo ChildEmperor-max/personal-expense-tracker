@@ -191,7 +191,6 @@ function renderTransactions() {
 function resetForm() {
     form.reset();
     setDefaultDate();
-    refreshCustomSelects();
 }
 
 function setDefaultDate() {
@@ -251,8 +250,7 @@ function startEdit(id) {
     typeInput.value = transaction.type;
     CatergoryInput.value = transaction.category;
     dateInput.value = transaction.date;
-    refreshCustomSelects();
-    
+   
     formHeading.textContent = 'Edit Transaction';
     submitButton.textContent = 'Save Changes';
     cancelEditButton.textContent = false;
@@ -413,198 +411,6 @@ const sortIcons = {
     highest: '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
     lowest:  '<polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/>'
 };
-
-const customSelects = [];
-
-const optionIcons = {
-    expense:   '<path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M14 8H8"/><path d="M16 12H8"/><path d="M13 16H8"/>',
-    income:    '<circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/>',
-    Food:      '<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>',
-    Transport: '<path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/>',
-    Bills:     '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>',
-    Shopping:  '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
-    Salary:    '<rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
-    Other:     '<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>'
-};
-
-function createOptionIcon(value) {
-    const shapes = optionIcons[value] || optionIcons.Other;
-    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${shapes}</svg>`; 
-}
-
-const checkIconMarkup = `<svg class="custom-select-check" viewBox="0 0 24 24" aria-hidden="true">
-    <circle cx="12" cy="12" r="10" fill="currentColor"/>
-    <path d="m8 12.5 3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`;
-
-function createCustomSelect(select) {
-    const label = document.querySelector('label[for="${select.id}"]');
-    const wrapper = document.createElement('div');
-    wrapper.classList = 'custom-select';
-    
-    const trigger = document.createElement('button');
-    trigger.type = 'button';
-    trigger.className = 'custom-select-trigger';
-    trigger.id = select.id + '-trigger';
-    trigger.setAttribute('aria-haspopud', 'listbox');
-    trigger.setAttribute('aria0-expanded', 'false');
-
-    const triggerText = document.createElement('span');
-    triggerText.className = 'custom-select-text';
-    trigger.appendChild(triggerText);
-    trigger.insertAdjacentHTML('beforeend',
-        `<svg class="custom-select-chevron" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`);
-
-    const menu = document.createElement('div');
-    menu.className = 'custom-select-menu';
-
-    const list = document.createElement('ul');
-    list.className = 'custom-select-list';
-    list.id = select.id + '-list';
-    list.setAttribute('role', 'listbox');
-    list.setAttribute('aria-label', label ? label.textContent : select.name);
-    trigger.setAttribute('aria-controls', list.id);
-
-    Array.from(select.options).forEach(function (option) {
-        if (option.disabled) {
-            return;
-        }
-        const item = document.createElement('li');
-        item.className = 'custom-select-option';
-        item.setAttribute('role', 'option');
-        item.tabIndex = -1;
-        item.dataset.value = option.value;
-        item.innerHTML =
-            `<span class="custom-select-icon">${createOptionIcon(option.value)}</span>
-             <span class="custom-select-label"></span>
-             ${checkIconMarkup}`;
-        item.querySelector('.custom-select-label').textContent = option.text;
-        list.appendChild(item);
-    });
-
-    const items = Array.from(list.children);
-
-    select.classList.add('custom-select-native');
-    select.tabIndex = -1;
-    select.setAttribute('aria-hidden', 'true');
-    select.parentNode.insertBefore(wrapper, select);
-    menu.appendChild(list);
-    wrapper.append(select, trigger, menu);
-
-    if (label) {
-        label.htmlFor = trigger.id;
-    }
-
-    function refresh() {
-        const selectedOption = select.options[select.selectedIndex];
-        triggerText.textContent = selectedOption ? selectedOption.text : '';
-        trigger.classList.toggle('is-placeholder', select.value ==='');
-
-        items.forEach(function (item) {
-            const isSelected = item.dataset.value === select.value;
-            item.classList.toggle('is-selected', isSelected);
-            item.setAttribute('aria-selected', String(isSelected) );
-        });
-    }
-
-    function open() {
-        wrapper.classList.add('is-open');
-        trigger.setAttribute('aria-expanded', 'true');
-        const target = items.find(function (item) {
-            return item.classList.contains('is-selected');
-        }) || items[0];
-        target.focus();
-    }
-
-    function close(returnFocus) {
-        wrapper.classList.remove('is-open');
-        trigger.setAttribute('aria-expanded', 'false');
-        if (returnFocus) {
-            trigger.focus();
-        }
-    }
-
-    function choose(item) {
-        select.value = item.dataset.value;
-
-        select.dispatchEvent(new Event('change', {bubbles: true}));
-        refresh();
-        close();
-    }
-
-    trigger.addEventListener('click', function() {
-        if (wrapper.classList.contains('is-open')) {
-            close(false);
-        } else {
-            open();
-        }
-    });
-
-    trigger.addEventListener('keydown', function(event) {
-        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-            event.preventDefault();
-            open();
-        }
-    });
-
-    list.addEventListener('click', function(event) {
-        const item = event.target.closest('.custom-select-option');
-        if (item) {
-            choose(item);
-        }
-    });
-
-    list.addEventListener('keydown', function (event) {
-        const currentIndex = items.indexOf(document.activeElement);
-
-        if (event.key === 'ArrowDown') {
-            event.preventDefault();
-            items[Math.min(currentIndex + 1, items.length - 1)].focus();
-        } else if (event.key === 'ArrowUp') {
-            event.preventDefault();
-            items[Math.max(currentIndex - 1, 0)].focus();
-        } else if (event.key === 'Home') {
-            event.preventDefault();
-            items[0].focus();
-        }  else if (event.key === 'End') {
-            event.preventDefault();
-            items[items.length - 1].focus();
-        } else if (event.key === 'Enter' || event. key === ' ') {
-            event.preventDefault();
-            if (currentIndex >= 0) {
-                choose(items[currentIndex]);
-            }
-        } else if (event.key === 'Escape') {
-            event.preventDefault();
-            close(true);
-        } else if (event.key === 'Tab') {
-            event.preventDefault();
-            close(false);
-        }
-    });
-
-    document.addEventListener('click', function (event) {
-        if (!wrapper.contains(event.target)) {
-            close(false);
-        }
-    });
-
-    refresh();
-    return { refresh: refresh };
-}
-
-document.querySelectorAll('select[data-custom-select]').forEach(function (select) {
-    customSelects.push(createCustomSelect(select));
-});
-
-function refreshCustomSelects() {
-    customSelects.forEach(function (customSelect) {
-        customSelect.refresh();
-    });
-}
 
 form.addEventListener('submit', handleFormSubmit);
 amountInput.addEventListener('input', formatAmountInput);
