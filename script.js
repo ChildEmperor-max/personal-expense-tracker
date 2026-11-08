@@ -468,7 +468,7 @@ function createCustomSelect(select) {
     list.setAttribute('aria-label', label ? label.textContent : select.name);
     trigger.setAttribute('aria-controls', list.id);
 
-    Array.from(select.options).forEach(function(option) {
+    Array.from(select.options).forEach(function (option) {
         if (option.disabled) {
             return;
         }
@@ -596,15 +596,15 @@ function createCustomSelect(select) {
     return { refresh: refresh };
 }
 
+document.querySelectorAll('select[data-custom-select]').forEach(function (select) {
+    customSelects.push(createCustomSelect(select));
+});
+
 function refreshCustomSelects() {
     customSelects.forEach(function (customSelect) {
         customSelect.refresh();
     });
 }
-
-document.querySelectorAll('select[data-custom-select]').forEach(function (select) {
-    customSelects.push(createCustomSelect(select));
-});
 
 form.addEventListener('submit', handleFormSubmit);
 amountInput.addEventListener('input', formatAmountInput);
