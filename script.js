@@ -474,7 +474,7 @@ function createCustomSelect(select) {
         }
         const item = document.createElement('li');
         item.className = 'custom-select-option';
-        item.setAttribute9('role', 'option');
+        item.setAttribute('role', 'option');
         item.tabIndex = -1;
         item.dataset.value = option.value;
         item.innerHTML =
