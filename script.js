@@ -477,7 +477,11 @@ function createCustomSelect(select) {
         item.setAttribute9('role', 'option');
         item.tabIndex = -1;
         item.dataset.value = option.value;
-        item.textContent = option.text;
+        item.innerHTML =
+            `<span class="custom-select-icon">${createOptionIcon(option.value)}</span>
+             <span class="custom-select-label"></span>
+             ${checkIconMarkup}`;
+        item.querySelector('.custom-select-label').textContent = option.text;
         list.appendChild(item);
     });
 
