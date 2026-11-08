@@ -499,11 +499,11 @@ function createCustomSelect(select) {
     }
 
     function refresh() {
-        const selectOptions = select.options[select.selectedIndex];
+        const selectedOption = select.options[select.selectedIndex];
         triggerText.textContent = selectedOption ? selectedOption.text : '';
         trigger.classList.toggle('is-placeholder', select.value ==='');
 
-        items.forEach(function (itme) {
+        items.forEach(function (item) {
             const isSelected = item.dataset.value === select.value;
             item.classList.toggle('is-selected', isSelected);
             item.setAttribute('aria-selected', String(isSelected) );
