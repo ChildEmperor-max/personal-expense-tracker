@@ -555,8 +555,8 @@ th {
 }
 
 .custom-select-option.is-selected {
-    color: var(--color-primary-soft);
-    font-weight: 600;
+    color: var(--color-text);
+    font-weight: 500;
     background-color: var(--color-primary-soft);
 }
 
