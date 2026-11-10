@@ -15,9 +15,9 @@ A simple, beginner-friendly expense tracker built with **HTML, CSS, and JavaScri
 
 ## Built With
 
-- HTML5
-- CSS3
-- JavaScript (Vanilla JS)
+- HTML
+- CSS
+- JavaScript
 
 ## Getting Started
 
