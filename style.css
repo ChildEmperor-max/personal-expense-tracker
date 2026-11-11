@@ -47,7 +47,6 @@ th,
 thead,
 table,
 tbody, 
-option,
 div {
     user-select: none;
 }
