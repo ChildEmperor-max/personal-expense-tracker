@@ -307,6 +307,28 @@ td button {
     min-width: 0;
 }
 
+.filters .btn-text {
+    grid-column: 1 / -1;
+    justify-self: end;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    background-color: transparent;
+}
+
+.filters .btn-text:hover {
+    color: var(--color-primary);
+    background-color: transparent;
+}
+
+.filters .btn-text svg {
+    width: 0.9rem;
+    height: 0.9rem;
+}
+
 .sort-wrapper{
     grid-column: 1 / -1;
     position: relative;
