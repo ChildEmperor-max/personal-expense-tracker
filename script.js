@@ -34,6 +34,8 @@ const sortTextElement = document.getElementById('sort-text');
 const typeError = document.getElementById('type-error');
 const categoryError = document.getElementById('category-error');
 
+const resetFiltersButton = document.getElementById('reset-filters-button');
+
 function calculateTotal(type) {
     return transactions
         .filter(function (transaction) {
@@ -412,6 +414,16 @@ const sortIcons = {
     lowest:  '<polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/>'
 };
 
+function resetFilters () {
+    searchInput.value = '';
+    filterTypeSelect.value = 'all';
+    filterCategorySelect.value = 'all';
+    sortSelect.value = 'newest';
+
+    updateSortDisplay();
+    renderTransactions();
+}
+
 form.addEventListener('submit', handleFormSubmit);
 amountInput.addEventListener('input', formatAmountInput);
 searchInput.addEventListener('input', renderTransactions);
@@ -422,6 +434,7 @@ transactionList.addEventListener('click', handleTableClick);
 cancelEditButton.addEventListener('click', exitEditMode);
 sortSelect.addEventListener('change', updateSortDisplay);
 sortSelect.addEventListener('change', renderTransactions);
+resetFiltersButton.addEventListener('click', resetFilters);
 
 setDefaultDate();
 updateSortDisplay();
