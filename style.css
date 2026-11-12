@@ -311,10 +311,12 @@ td button {
     grid-column: 1 / -1;
     justify-self: end;
     align-items: center;
+    display: inline-flex;
     gap: 0.35rem;
     padding: 0.2rem 0.25rem;
     font-size: 0.85rem;
     font-weight: 500;
+    line-height: 1;
     color: var(--color-text-muted);
     background-color: transparent;
 }
