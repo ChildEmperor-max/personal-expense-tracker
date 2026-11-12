@@ -390,6 +390,16 @@ function sortTransactions(list, sortBy) {
     });
 }
 
+function resetFilters () {
+    searchInput.value = '';
+    filterTypeSelect.value = 'all';
+    filterCategorySelect.value = 'all';
+    sortSelect.value = 'newest';
+
+    updateSortDisplay();
+    renderTransactions();
+}
+
 function renderIcons() { 
     if (window.lucide) {
         lucide.createIcons();
@@ -413,16 +423,6 @@ const sortIcons = {
     highest: '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
     lowest:  '<polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/>'
 };
-
-function resetFilters () {
-    searchInput.value = '';
-    filterTypeSelect.value = 'all';
-    filterCategorySelect.value = 'all';
-    sortSelect.value = 'newest';
-
-    updateSortDisplay();
-    renderTransactions();
-}
 
 form.addEventListener('submit', handleFormSubmit);
 amountInput.addEventListener('input', formatAmountInput);
