@@ -18,7 +18,7 @@ function loadTransactions() {
     }
 }
 
-let transactions = [];
+let transactions = loadTransactions();
 let editingId = null;
 
 const totalIncomeElement = document.getElementById('total-income');
