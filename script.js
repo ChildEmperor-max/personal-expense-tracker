@@ -186,7 +186,7 @@ function createTransactionRow(transaction) {
     transaction.type === 'income' ? 'amount-income' : 'amount-expense';
 
     row.innerHTML = `
-        <td>${transaction.description}</td>
+        <td>${escapeHtml(transaction.description)}</td>
         <td>${transaction.category}</td>
         <td>${formatDate(transaction.date)}</td>
         <td>${transaction.type}</td>
