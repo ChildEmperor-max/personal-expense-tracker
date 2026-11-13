@@ -1,3 +1,23 @@
+const STORAGE_KEY = 'expenseTrackerTransactions';
+
+function saveTransactions() {
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
+    } catch (error) {
+        console.error('Could not save transactions:', error);
+    }
+}
+
+function loadTransactions() {
+    try {
+        const savedText = localStorage.getItem(STORAGE_KEY);
+        const saved = savedText ? JSON.parse(savedText) : [];
+        return Array.isArray(saved) ? saved : [];
+    } catch (error) {
+        return [];
+    }
+}
+
 let transactions = [];
 let editingId = null;
 
