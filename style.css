@@ -91,6 +91,20 @@ main {
     color: var(--color-text-muted);
 }
 
+/* Logo and name */
+.header-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.site-logo {
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 6px;
+}
+
 /* Summary Cards */
 .summary {
     display: grid;
