@@ -6,6 +6,7 @@
     --color-border: #dde2e8;
     --color-primary: #2f5bea;
     --color-primary-dark: #2448c2;
+    --color-primary-light: #4f7bff;
     --color-income: #1a8f4c;
     --color-expense: #d64545;
     --color-field-bg: #f5f7fa;
@@ -60,6 +61,12 @@ div {
 /* header */
 .site-header {
     background-color: var(--color-primary);
+    background-image: linear-gradient(
+        90deg,
+        var(--color-primary-dark),
+        var(--color-primary),
+        var(--color-primary-light)
+    );
     color:#ffffff;
     padding: var(--space) 0;
     margin-bottom:calc(var(--space) * 1.5);
