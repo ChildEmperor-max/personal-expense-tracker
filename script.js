@@ -233,6 +233,7 @@ function handleFormSubmit(event) {
         exitEditMode();
     }
 
+    saveTransactions();
     renderTransactions();
     resetForm();
 }
