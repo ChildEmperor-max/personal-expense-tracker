@@ -327,6 +327,8 @@ td button {
 }
 
 .filters .btn-text svg {
+    position: relative;
+    top: 1px;
     width: 0.9rem;
     height: 0.9rem;
 }
