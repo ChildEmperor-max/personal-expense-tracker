@@ -249,6 +249,8 @@ function deleteTransaction(id) {
         return transaction.id !== id;
     });
     
+    saveTransactions();
+    
     if (editingId === id) {
         exitEditMode();
     }
