@@ -167,6 +167,12 @@ function formatAmount(amount) {
     return amount.toLocaleString('en-US', { style: 'currency', currency: 'PHP' });
 }
 
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 function formatDate(dateText) {
     const [year, month, day] = dateText.split('-');
     return `${month}/${day}/${year}`;
@@ -249,7 +255,7 @@ function deleteTransaction(id) {
         return transaction.id !== id;
     });
     
-    saveTransactions();
+    saveTransactions()
     
     if (editingId === id) {
         exitEditMode();
